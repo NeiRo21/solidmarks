@@ -17,7 +17,7 @@
         "browser_style": true,
         "default_icon": "icons/bookmarks_black.svg",
         "default_title": "Solidmarks",
-        "default_popup": "popup/tbd.html"
+        "default_popup": "popup/config.html"
     },
 
     "background": {
