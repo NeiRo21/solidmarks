@@ -18,5 +18,9 @@
         "default_icon": "icons/bookmarks_black.svg",
         "default_title": "Solidmarks",
         "default_popup": "popup/tbd.html"
+    },
+
+    "background": {
+        "scripts": ["background.js"]
     }
 }
