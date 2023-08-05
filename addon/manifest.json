@@ -7,6 +7,12 @@
     "description": "TBA",
     "homepage_url": "https://github.com/NeiRo21/solidmarks",
 
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "neiro21@gmail.com"
+        }
+    },
+
     "icons": {
         "48": "icons/twotone_bookmarks_black_48.png"
     },
@@ -31,5 +37,10 @@
 
     "background": {
         "scripts": ["background/index.js"]
-    }
+    },
+
+    "content_security_policy": "default-src 'self' https://solidcommunity.net https://*.solidcommunity.net; script-src 'self' 'unsafe-eval' 'sha256-B2yPHKaXnvFWtRChIbabYmUBFZdVfKKXHbWtWidDVF8='; object-src 'self';",
+    "web_accessible_resources": [
+        "session/session.html"
+    ]
 }

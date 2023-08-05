@@ -1,2 +1,4 @@
 node_modules
 addon/background/index.*
+addon/popup/index.*
+addon/session/index.*

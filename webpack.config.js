@@ -19,11 +19,22 @@ export default {
       }
     )
   ],
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
+  },
   entry: {
-    background: "./src/background.js"
+    background: "./src/background.ts",
+    popup: "./src/popup.ts",
+    session: "./src/session.ts",
   },
   output: {
     path: path.resolve(__dirname, "addon"),
     filename: "[name]/index.js"
-  }
+  },
+  module: {
+    rules: [
+      { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/, },
+      { test: /\.js$/, loader: "source-map-loader" },
+    ]
+  },
 };
