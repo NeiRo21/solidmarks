@@ -1,7 +1,6 @@
-"use strict";
-import { fetch, getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import { getSolidDataset } from "@inrupt/solid-client";
-import { ConnectionId } from "./common";
+import {Session} from "@neiro21/solid-client-authn-webext";
+import {getSolidDataset} from "@inrupt/solid-client";
+import {ConnectionId, PopupRequest, PopupRequestType} from "./common";
 
 // function updateIcon() {
 //   browser.browserAction.setIcon({
@@ -21,23 +20,47 @@ import { ConnectionId } from "./common";
 //   });
 // }
 
-function logBookmarkEvent(type: string, bookmarkId: string, info: object) {
-    console.log(`${type} id: ${bookmarkId} info: ${JSON.stringify(info, undefined, 2)}`);
-}
+let popupPort: browser.runtime.Port;
 
 function handlePopupMessage(message: object) {
     console.log(`Received from popup: ${JSON.stringify(message, undefined, 2)}`)
+    let request = message as PopupRequest;
+    switch (request.type) {
+        case PopupRequestType.LOGIN:
+            self.solidSession.login({
+                oidcIssuer: "https://solidcommunity.net",
+                clientName: "Solidmarks",
+                redirectUrl: browser.identity.getRedirectURL()
+            });
+            break;
+
+        case PopupRequestType.LOGOUT:
+            void self.solidSession.logout();
+            break;
+
+        case PopupRequestType.STATUS:
+            popupPort.postMessage(self.solidSession.info);
+            break;
+
+        default:
+            break;
+    }
+}
+
+function logBookmarkEvent(type: string, bookmarkId: string, info: object) {
+    console.log(`${type} id: ${bookmarkId} info: ${JSON.stringify(info, undefined, 2)}`);
 }
 
 browser.bookmarks.onCreated.addListener(async (id, bookmark) => {
     logBookmarkEvent('Created', id, bookmark);
 
-    if (getDefaultSession().info.isLoggedIn) {
-        const bookmarkIndex = await getSolidDataset(
+    if (self.solidSession.info.isLoggedIn) {
+        getSolidDataset(
             "https://neiro21.solidcommunity.net/bookmarks/index.ttl",
-            { fetch: fetch }
-        );
-        console.log(JSON.stringify(bookmarkIndex, undefined, 2));
+            { fetch: self.solidSession.fetch }
+        )
+            .then((dataset) => console.log(JSON.stringify(dataset, undefined, 2)))
+            .catch((reason) => console.log(`Failed to fetch dataset: ${reason}`));
     } else {
         console.log("Not logged in, skipping");
     }
@@ -55,12 +78,13 @@ browser.bookmarks.onMoved.addListener((id, moveInfo) => {
     logBookmarkEvent('Moved', id, moveInfo);
 });
 
-let popupPort: browser.runtime.Port;
 browser.runtime.onConnect.addListener((p) => {
     if (p.name === ConnectionId.POPUP) {
         popupPort = p;
         popupPort.onMessage.addListener(handlePopupMessage);
     }
 });
+
+self.solidSession = new Session();
 
 console.log('Solidmarks started');

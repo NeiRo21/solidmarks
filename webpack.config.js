@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const isProduction = process.env.NODE_ENV == 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default {
   mode: isProduction ? "production" : "development",
@@ -25,11 +25,18 @@ export default {
   entry: {
     background: "./src/background.ts",
     popup: "./src/popup.ts",
-    session: "./src/session.ts",
   },
   output: {
     path: path.resolve(__dirname, "addon"),
-    filename: "[name]/index.js"
+    filename: "[name]/index.js",
+    clean: {
+      keep(asset) {
+        return asset.endsWith(".html") ||
+          asset.endsWith(".json") ||
+          asset.endsWith(".png") ||
+          asset.endsWith(".svg");
+      }
+    },
   },
   module: {
     rules: [
