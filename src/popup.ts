@@ -1,8 +1,8 @@
 import {ISessionInfo} from "@neiro21/solid-client-authn-webext";
 import {ConnectionId, PopupRequestType} from "./common";
 
-const logInOutButton = document.getElementById("logInOut");
-const title = document.getElementById("status");
+const logInOutButton = document.getElementById("logInOut")!!;
+const title = document.getElementById("status")!!;
 
 let isLoggedIn = false;
 
@@ -21,7 +21,7 @@ console.log("Displaying status popup");
 function handleBackgroundScriptMessage(message: object) {
     console.log(`Received from background script: ${JSON.stringify(message, undefined, 2)}`)
     const sessionInfo = message as ISessionInfo;
-    let webId: string;
+    let webId: string | undefined;
     if (sessionInfo) {
         isLoggedIn = sessionInfo.isLoggedIn;
         webId = sessionInfo.webId;
