@@ -11,7 +11,12 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "lint": "web-ext lint -s addon"
+    "lint": "npm run lint:check",
+    "lint:check": "npm run lint:eslint && npm run lint:prettier -- --check && npm run lint:addon",
+    "lint:fix": "npm run lint:eslint -- --fix && npm run lint:prettier -- --write",
+    "lint:eslint": "eslint \"src/\"",
+    "lint:prettier": "prettier \"src/**/*.{ts,tsx}\" \"addon/**/*.{html,css}\" \"./*.{md,ts,json}\"",
+    "lint:addon": "web-ext lint -s addon"
   },
   "repository": {
     "type": "git",
@@ -25,10 +30,15 @@
   },
   "homepage": "https://github.com/NeiRo21/solidmarks#readme",
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@types/uuid": "^10.0.0",
+    "eslint": "^9.39.1",
     "path": "^0.12.7",
+    "prettier": "^3.6.2",
     "source-map-loader": "^5.0.0",
     "ts-loader": "^9.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
     "web-ext-plugin": "^2.10.0",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"
