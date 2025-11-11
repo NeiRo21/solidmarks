@@ -1,0 +1,45 @@
+{
+    "manifest_version": 2,
+    "name": "Solidmarks",
+    "version": "0.1",
+
+    "author": "NeiRo21",
+    "description": "TBA",
+    "homepage_url": "https://github.com/NeiRo21/solidmarks",
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "neiro21@gmail.com",
+            "data_collection_permissions": {
+                "required": ["bookmarksInfo"]
+            }
+        }
+    },
+
+    "icons": {
+        "48": "icons/twotone_bookmarks_black_48.png"
+    },
+
+    "permissions": [
+        "bookmarks",
+        "storage",
+        "identity"
+    ],
+
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": true,
+        "chrome_style": true
+    },
+
+    "browser_action": {
+        "browser_style": true,
+        "default_icon": "icons/bookmarks_black.svg",
+        "default_title": "Solidmarks",
+        "default_popup": "popup/status.html"
+    },
+
+    "background": {
+        "scripts": ["background/index.js"]
+    }
+}

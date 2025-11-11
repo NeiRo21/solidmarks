@@ -1,0 +1,5 @@
+dist/
+node_modules/
+addon/background/index.*
+addon/popup/index.*
+.vscode/
