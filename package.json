@@ -15,7 +15,7 @@
     "lint:check": "npm run lint:eslint && npm run lint:prettier -- --check && npm run lint:addon",
     "lint:fix": "npm run lint:eslint -- --fix && npm run lint:prettier -- --write",
     "lint:eslint": "eslint \"src/\"",
-    "lint:prettier": "prettier \"src/**/*.{ts,tsx}\" \"addon/**/*.{html,css}\" \"./*.{md,ts,json}\"",
+    "lint:prettier": "prettier \"src/**/*.{ts,tsx}\" \"addon/**/*.{html,css}\" \"./*.{md,ts,json,mjs}\"",
     "lint:addon": "web-ext lint -s addon"
   },
   "repository": {
