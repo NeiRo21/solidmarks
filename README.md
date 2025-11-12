@@ -1,6 +1,7 @@
 # solidmarks
 
 [![CI](https://github.com/NeiRo21/solidmarks/actions/workflows/ci.yml/badge.svg)](https://github.com/NeiRo21/solidmarks/actions/workflows/ci.yml)
+[![CodeQL Advanced](https://github.com/NeiRo21/solidmarks/actions/workflows/codeql.yml/badge.svg)](https://github.com/NeiRo21/solidmarks/actions/workflows/codeql.yml)
 
 `solidmarks` is an experimental web browser extension for storing bookmarks in [Solid](https://solidproject.org/about) Pods. It is designed to work in Firefox and Chrome, as well as, potentially, Opera and Edge.
 
