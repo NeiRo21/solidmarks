@@ -12,10 +12,9 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "lint": "npm run lint:check",
-    "lint:check": "npm run lint:eslint && npm run lint:prettier -- --check && npm run lint:addon",
-    "lint:fix": "npm run lint:eslint -- --fix && npm run lint:prettier -- --write",
-    "lint:eslint": "eslint \"src/\"",
-    "lint:prettier": "prettier \"src/**/*.{ts,tsx}\" \"addon/**/*.{html,css}\" \"./*.{md,ts,json,mjs}\"",
+    "lint:check": "npm run lint:eslint && npm run lint:addon",
+    "lint:fix": "npm run lint:eslint -- --fix",
+    "lint:eslint": "eslint --config eslint.config.mjs .",
     "lint:addon": "web-ext lint -s addon"
   },
   "repository": {
@@ -31,8 +30,15 @@
   "homepage": "https://github.com/NeiRo21/solidmarks#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@eslint/markdown": "^7.5.1",
     "@types/uuid": "^10.0.0",
     "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-headers": "^1.3.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
     "path": "^0.12.7",
     "prettier": "^3.6.2",
     "source-map-loader": "^5.0.0",
@@ -47,5 +53,8 @@
     "@inrupt/solid-client": "latest",
     "@neiro21/solid-client-authn-webext": "latest",
     "@types/firefox-webext-browser": "^120.0.0"
+  },
+  "engines": {
+    "node": "^20.0.0 || ^22.0.0"
   }
 }
