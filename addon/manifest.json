@@ -34,7 +34,7 @@
 
     "browser_action": {
         "browser_style": true,
-        "default_icon": "icons/bookmarks_black.svg",
+        "default_icon": "icons/bookmarks_logged_out.svg",
         "default_title": "Solidmarks",
         "default_popup": "popup/status.html"
     },

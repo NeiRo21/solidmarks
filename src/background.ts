@@ -25,24 +25,6 @@ import { Session } from "@neiro21/solid-client-authn-webext";
 import { getSolidDataset } from "@inrupt/solid-client";
 import { ConnectionId, PopupRequest, PopupRequestType } from "./common";
 
-// function updateIcon() {
-//   browser.browserAction.setIcon({
-//     path: currentBookmark ? {
-//       18: "icons/star-filled-19.png",
-//       37: "icons/star-filled-38.png"
-//     } : {
-//       18: "icons/star-empty-19.png",
-//       37: "icons/star-empty-38.png"
-//     },
-//     tabId: currentTab.id
-//   });
-//   browser.browserAction.setTitle({
-//     // Screen readers can see the title
-//     title: currentBookmark ? 'Unbookmark it!' : 'Bookmark it!',
-//     tabId: currentTab.id
-//   });
-// }
-
 let popupPort: browser.runtime.Port;
 
 function handlePopupMessage(message: object) {
@@ -50,15 +32,33 @@ function handlePopupMessage(message: object) {
   const request = message as PopupRequest;
   switch (request.type) {
     case PopupRequestType.LOGIN:
-      self.solidSession.login({
-        oidcIssuer: "https://solidcommunity.net",
-        clientName: "Solidmarks",
-        redirectUrl: browser.identity.getRedirectURL(),
-      });
+      self.solidSession
+        .login({
+          oidcIssuer: "https://solidcommunity.net",
+          clientName: "Solidmarks",
+          redirectUrl: browser.identity.getRedirectURL(),
+        })
+        .then(() => {
+          console.log("Login completed");
+          browser.browserAction.setIcon({
+            path: "../icons/bookmarks_logged_in.svg",
+          });
+          browser.browserAction.setTitle({
+            title: "Solidmarks - Logged in",
+          });
+        });
       break;
 
     case PopupRequestType.LOGOUT:
-      void self.solidSession.logout();
+      self.solidSession.logout().then(() => {
+        console.log("Logout completed");
+      });
+      browser.browserAction.setIcon({
+        path: "../icons/bookmarks_logged_out.svg",
+      });
+      browser.browserAction.setTitle({
+        title: "Solidmarks",
+      });
       break;
 
     case PopupRequestType.STATUS:
