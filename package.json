@@ -52,7 +52,7 @@
   "dependencies": {
     "@inrupt/solid-client": "latest",
     "@neiro21/solid-client-authn-webext": "latest",
-    "@types/firefox-webext-browser": "^120.0.0"
+    "@types/firefox-webext-browser": "^143.0.0"
   },
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || ^24.0.0"
