@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"No tests exist.\"",
     "build": "webpack --mode=production --node-env=production",
-    "clean": "rm -rf node_modules package-lock.json",
+    "clean": "rm -rf node_modules dist",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
