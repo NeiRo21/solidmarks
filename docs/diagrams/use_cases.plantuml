@@ -1,0 +1,25 @@
+@startuml Use Cases
+left to right direction
+skinparam actorStyle Hollow 
+actor "Web browser\napp session" as browserSession
+rectangle "Solidmarks web\nbrowser extension" <<Component>> {
+    usecase "Start bookmarks\nsync session" as startSession
+    usecase "Connect to Solid POD" as connectToPOD
+    usecase "Handle bookmarks\nupdate notification" as receiveNotification
+    usecase "Reconcile bookmarks" as reconcileBookmarks
+    usecase "Update bookmarks" as updateBookmarks
+}
+skinparam actorStyle awesome
+actor "Identity\nprovider" as identityProvider
+actor "Solid POD\nprovider" as podProvider
+browserSession -- startSession
+startSession .right.> connectToPOD : include
+startSession .left.> reconcileBookmarks : include
+connectToPOD -- podProvider
+connectToPOD -- identityProvider
+reconcileBookmarks -- podProvider
+browserSession -- receiveNotification
+receiveNotification -- podProvider
+browserSession -- updateBookmarks
+updateBookmarks -- podProvider
+@enduml
