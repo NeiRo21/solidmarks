@@ -11,6 +11,7 @@
     "noImplicitAny": true,
     "allowJs": true,
     "sourceMap": true,
+    "types": ["firefox-webext-browser"],
     "rootDir": "./src"
   },
   "include": ["./src/**/*"]
