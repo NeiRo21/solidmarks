@@ -1,4 +1,4 @@
-@startuml Bookmark update processing
+@startuml Handle bookmarks update
 skinparam conditionStyle InsideDiamond
 
 split

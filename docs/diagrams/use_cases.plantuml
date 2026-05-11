@@ -4,22 +4,24 @@ skinparam actorStyle Hollow
 actor "Web browser\napp session" as browserSession
 rectangle "Solidmarks web\nbrowser extension" <<Component>> {
     usecase "Start bookmarks\nsync session" as startSession
-    usecase "Connect to Solid POD" as connectToPOD
-    usecase "Handle bookmarks\nupdate notification" as receiveNotification
+    usecase "Authenticate" as authenticate
     usecase "Reconcile bookmarks" as reconcileBookmarks
-    usecase "Update bookmarks" as updateBookmarks
+    usecase "Handle bookmarks update" as handleUpdate
+    usecase "Handle update\nnotification from POD" as handleNotification
+    usecase "Update bookmarks\nin browser" as updateInBrowser
 }
 skinparam actorStyle awesome
-actor "Identity\nprovider" as identityProvider
+actor "Solid\nidentity\nprovider" as identityProvider
 actor "Solid POD\nprovider" as podProvider
 browserSession -- startSession
-startSession .right.> connectToPOD : include
+startSession .right.> authenticate : include
 startSession .left.> reconcileBookmarks : include
-connectToPOD -- podProvider
-connectToPOD -- identityProvider
+authenticate -- identityProvider
 reconcileBookmarks -- podProvider
-browserSession -- receiveNotification
-receiveNotification -- podProvider
-browserSession -- updateBookmarks
-updateBookmarks -- podProvider
+browserSession -- handleNotification
+browserSession -- updateInBrowser
+handleNotification -left-|> handleUpdate
+updateInBrowser -right-|> handleUpdate
+handleNotification -- podProvider
+updateInBrowser -- podProvider
 @enduml
