@@ -1,0 +1,26 @@
+@startuml Bookmark update processing
+skinparam conditionStyle InsideDiamond
+
+split
+    -[hidden]->
+    split
+        -[hidden]->
+        :Browser event; <<input>>
+    split again
+        -[hidden]->
+        :POD notification; <<input>>
+    end split
+    :<<centralBuffer>>\nUpdate queue; <<task>>
+split again
+    -[hidden]->
+    start
+end split
+
+while (Update in queue?)
+  :Apply update;
+  :Save to POD;
+endwhile
+-[hidden]->
+detach
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml Start bookmarks sync session
+skinparam conditionStyle InsideDiamond
+
+start
+
+if (Can connect to POD?) then (yes)
+    :Disable update queue processing;
+    :Listen to browser events;
+    :Subscribe to POD notifications;
+    :Reconcile bookmarks with POD;
+    :Enable update queue processing;
+else (no)
+    :Notify user; <<output>>
+    stop
+endif
+
+end
+@enduml
