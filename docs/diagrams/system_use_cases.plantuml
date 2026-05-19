@@ -1,4 +1,4 @@
-@startuml Use Cases
+@startuml System Use Cases
 left to right direction
 skinparam actorStyle Hollow 
 actor "Web browser\napp session" as browserSession
