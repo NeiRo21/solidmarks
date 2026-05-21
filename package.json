@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/NeiRo21/solidmarks#readme",
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^10.0.1",
     "@eslint/markdown": "^8.0.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
