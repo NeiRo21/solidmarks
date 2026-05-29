@@ -1,0 +1,14 @@
+[repositories]
+paths = [
+    "./docs/requirements"
+]
+
+[validation]
+strict_mode = true  # Enable strict validation (non-critical issues become errors)
+
+[output]
+colors = true
+emojis = true
+
+[templates]
+paths = []  # Custom template directories
