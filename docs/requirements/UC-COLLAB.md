@@ -16,12 +16,12 @@ refines:
 
 ## Pre-conditions
 
-- User has a personal storage containing bookmark data supported by Solidmarks.
+- User has a personal storage containing browser bookmark data supported by Solidmarks.
 - The storage is available and accessible by user.
 
 ## Main Success Outcome
 
-User is able to share the bookmarks stored in personal storage with other users. User specifies access permissions granted to other users (read-only, read and write) when sharing.
+User is able to share bookmarks stored in personal storage with other users. User specifies access permissions granted to other users (read-only, read and write) when sharing.
 
 ## Key Functional Scope
 
