@@ -46,7 +46,7 @@
     "typescript-eslint": "^8.63.0",
     "web-ext-plugin": "^2.13.0",
     "webpack": "^5.108.4",
-    "webpack-cli": "^7.0.3"
+    "webpack-cli": "^7.2.1"
   },
   "dependencies": {
     "@inrupt/solid-client": "latest",
